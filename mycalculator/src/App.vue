@@ -110,8 +110,6 @@ export default {
               case 'plu':
                   this.display = parseFloat(this.oldDisplay) + parseFloat(this.display);
                   break;
-              default:
-                  this.display = this.display;
           }
           console.log(this.display, 'old:'+ this.oldDisplay)
       }
