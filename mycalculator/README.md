@@ -1,24 +1,10 @@
 # mycalaulator
 
-## Project setup
-```
-npm install
-```
+## Unresolved: 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+1. - 15.6*7.6 = 118.55999999999999
+- 0.1+0.1=0.2         0.1+0.2=0.3000000000
 
-### Compiles and minifies for production
-```
-npm run build
-```
+2. Color cannot be changed in transition;
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+3. Continuous operation
