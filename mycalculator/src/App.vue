@@ -6,22 +6,22 @@
           <div class="multiple" @click="allClear()">AC</div>
           <div class="multiple" @click="negative()">+/-</div>
           <div class="multiple" @click="precent()">%</div>
-          <div class="sign" @click="divide()">÷</div>
-          <div class="number" @click="number('7')">7</div>
-          <div class="number" @click="number('8')">8</div>
-          <div class="number" @click="number(9)">9</div>
-          <div class="sign" @click="multiply()">×</div>
-          <div class="number" @click="number('4')">4</div>
-          <div class="number" @click="number('5')">5</div>
-          <div class="number" @click="number('6')">6</div>
-          <div class="sign" @click="minus()">-</div>
-          <div class="number" @click="number('1')">1</div>
-          <div class="number" @click="number('2')">2</div>
-          <div class="number" @click="number('3')">3</div>
-          <div class="sign" @click="plus()">+</div>
-          <div class="zero" @click="zero('0')">0</div>
-          <div class="number" @click="point('.')">.</div>
-          <div class="sign" @click="equal()"><span>=</span></div>
+          <div class="sign light" @click="divide()">÷</div>
+          <div class="number light" @click="number('7')">7</div>
+          <div class="number light" @click="number('8')">8</div>
+          <div class="number light" @click="number(9)">9</div>
+          <div class="sign light" @click="multiply()">×</div>
+          <div class="number light" @click="number('4')">4</div>
+          <div class="number light" @click="number('5')">5</div>
+          <div class="number light" @click="number('6')">6</div>
+          <div class="sign light" @click="minus()">-</div>
+          <div class="number light" @click="number('1')">1</div>
+          <div class="number light" @click="number('2')">2</div>
+          <div class="number light" @click="number('3')">3</div>
+          <div class="sign light" @click="plus()">+</div>
+          <div class="zero light" @click="zero('0')">0</div>
+          <div class="number light" @click="point('.')">.</div>
+          <div class="sign light" @click="equal()"><span>=</span></div>
       </div>
   </div>
 </template>
@@ -35,6 +35,7 @@ export default {
           display: '',
           oldDisplay: '',
           opeartion: null,
+          open: 'off',
       }
   },
   methods: {
@@ -58,6 +59,13 @@ export default {
               this.display = '';
           }
           this.display += n;
+          this.open = 'on';
+        //   setTimeout(
+        //       this.open = 'off'
+        //   , 1000);
+        // setTimeout(() => {
+        //     this.open = 'off';
+        // }, 1000);
       },
       zero(n) {
           if (this.display.slice(0,1) === '0') {
@@ -142,12 +150,6 @@ export default {
 .calculator > div {
     font-size: 24px;
     padding-top: 20px;
-    opacity: 0.77;
-    transition-property: opacity;
-    transition-duration: 0.1s;
-}
-/* 变化不缓慢 */
-div :hover {
     opacity: 1;
 }
 #display {
@@ -173,5 +175,28 @@ div :hover {
 .sign {
     background-color: orange;
     border-radius: 50%;
+}
+.light {
+    position: relative;
+    overflow: hidden;
+}
+.light::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    color: orange;
+    opacity: 0;
+    transition: background 1s, color 1s, opacity 1s;
+}
+.light:active::after {
+    background: white;
+    color: orange;
+    opacity: 1;
+    transition: 0s;
 }
 </style>
