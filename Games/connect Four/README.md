@@ -1,5 +1,5 @@
 
-video from [](https://www.youtube.com/watch?v=lhNdUVh3qCc)
+video from [Youtube](https://www.youtube.com/watch?v=lhNdUVh3qCc)
 
 改动：可正常游戏
 todo：棋子落下的动画效果
