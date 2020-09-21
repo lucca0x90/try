@@ -14,7 +14,7 @@ const destination = [0, 1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 15];
 const safe = [80, 160];
 const river = [];
 const road = [];
-let frogger = [167];
+let frogger = [87];
 let gameInterval;
 let timeInterval;
 let circleInterval;
@@ -60,9 +60,9 @@ function removeItem(arr, style) {
 }
 
 function moveItem(item, line) {
-    if(item.game === 1) {
+    if(item.game === 1 || item.game === 3) {
         riverWin.push(...item.arr);
-    } else if(item.game === 2 || item.game === 3) {
+    } else if(item.game === 2) {
         roadLose.push(...item.arr);
     }
 
@@ -323,6 +323,7 @@ function lose() {
     dLose.forEach(d => {
         if(d === frogger[0]) {
             clearInterval(gameInterval);
+            clearInterval(timeInterval);
             result.innerText = 'OH, YOU LOSE!!';
             document.removeEventListener('keyup', froggerMove);
         }
@@ -332,7 +333,7 @@ function lose() {
         if(riverWin.find(r => r === frogger[0])) {
             fRiverMove(frogger);
         } else{
-            console.log('lose')
+            clearInterval(timeInterval);
             clearInterval(gameInterval);
             result.innerText = 'OH, YOU LOSE!!';
             document.removeEventListener('keyup', froggerMove);
@@ -343,6 +344,7 @@ function lose() {
         roadLose.forEach(r => {
             if(r === frogger[0]) {
                 clearInterval(gameInterval);
+                clearInterval(timeInterval);
                 result.innerText = 'OH, YOU LOSE!!';
                 document.removeEventListener('keyup', froggerMove);
             }
@@ -354,6 +356,7 @@ function win() {
     winArr.forEach(w => {
         if(w === frogger[0]) {
             clearInterval(gameInterval);
+            clearInterval(timeInterval);
             result.innerText = 'YOU WIN!';
             document.removeEventListener('keyup', froggerMove);
         }
@@ -370,24 +373,18 @@ function timeOut() {
         result.innerText = 'Game Over!!!';
         document.removeEventListener('keyup', froggerMove);
     }
-
 }
 
-function start() {
-    clearInterval(gameInterval);
-}
 
 function loop () {
     move();
     win();
     lose();
-    circleDisappear();
+    // circleDisappear();
 }
-function main() {
+function start() {
     init();
     document.addEventListener('keyup', froggerMove);
-    gameInterval = setInterval(loop, 1000);
+    gameInterval = setInterval(loop, 900);
     timeInterval = setInterval(timeOut, 1000);
-    
 }
-main();
